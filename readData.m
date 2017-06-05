@@ -1,0 +1,26 @@
+function [ imgList ] = readData( root )
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+
+files = dir(root);
+imgNum = 1;
+imgList = cell(0);
+n = length(files);
+
+for i = 1:n
+    if strcmp(files(i).name, '.') || strcmp(files(i).nmae, '..')
+    else
+        rootPath = strcat(root, '/', files(i).name);
+        fileLise = dir(rootPath);
+        m = length(fileList);
+        for j = 1:m
+            if strcmp(fileList(j).name, '.') || strcmp(fileList(j).name, '..')
+            else
+                imgList{imgNum} = imread(rootPath, '/', fileList(j).name);
+            end
+        end
+    end
+end
+
+end
+
