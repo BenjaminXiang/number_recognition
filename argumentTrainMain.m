@@ -5,13 +5,8 @@ root = './data';
 img = readData(root);
 
 %图像预处理 处理的结果保存在stdImg中
-% stdImg = imgProess(img);
+stdImg = imgProess(img);
 
-num = length(img)
-stdImgList = cell(0);
-
-    
-end
 
 
 

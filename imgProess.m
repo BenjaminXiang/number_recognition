@@ -2,7 +2,7 @@ function [ stdImgList ] = imgProess( img )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
-num = length(img)
+num = length(img);
 stdImgList = cell(0);
 for i = 1:num
     bw = im2bw(img{i}, graythresh(img{i})); %图像二值化
@@ -30,7 +30,16 @@ for i = 1:num
     rate = 18/max(size(bw2));
     bw2 = imresize(bw2, rate);
     [numCol, numRow] = size(bw2); %numCol = 18, numRow = 18
-end 
+    col1 = round((18-numCol)/2);
+    row1 = round((18-numRow)/2);
+    p = zeros(18, 18);
+    p(col1+1:col1+numCol, row1+1:row1+numRow)=bw2;
+    
+    %图像细化
+    p = bwmorph(p, 'thin', inf);
+    
+    stdImgList{i} = p;
+
 end
 
 end
