@@ -2,8 +2,9 @@ clc;
 clear all;
 
 root = './data';
-img = read_data(root);
+img = readData(root);
 
-stdImg = img_pro(img);
+stdImg = imgPro(img);
+
 
 
