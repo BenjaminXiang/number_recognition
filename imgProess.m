@@ -19,6 +19,7 @@ for i = 1:num
         end
     end
     
+    %确定数字的范围
     [numCol, numRow] = find(bw == 1);
     colMin = min(numCol);
     colMax = max(numCol);
@@ -38,6 +39,7 @@ for i = 1:num
     %图像细化
     p = bwmorph(p, 'thin', inf);
     
+    %标准化后的图像保存在STDImgList中
     stdImgList{i} = p;
 
 end

@@ -7,6 +7,9 @@ img = readData(root);
 %图像预处理 处理的结果保存在stdImg中
 stdImg = imgProess(img);
 
+%特征提取
+imgFeature = featureLattice(stdImg);
+
 
 
 
