@@ -5,34 +5,11 @@ root = './data';
 img = readData(root);
 
 %图像预处理 处理的结果保存在stdImg中
-% stdImg = imgProess(img);
+stdImg = imgProess(img);
 
-num = length(img)
-stdImgList = cell(0);
-for i = 1:num
-    bw = im2bw(img{i}, graythresh(img{i})); %图像二值化
-    [col, row] = size(bw);
-    
-    %图像反色
-    for ii = 1:col
-        for jj = 1:row
-            if bw(ii, jj) == 0
-                bw(ii, jj) = 1;
-            else 
-                bw(ii, jj) =0;
-            end
-        end
-    end
-    
-    [numCol, numRow] = find(bw == 1);
-    colMin = min(numCol);
-    colMax = max(numCol);
-    rowMin = min(numRow);
-    rowMax = max(numRow);
-    
-    %
-    bw2 = bw(colMin:colMax, rowMin:rowMax);
-end
+%特征提取
+imgFeature = featureLattice(stdImg);
+
 
 
 
