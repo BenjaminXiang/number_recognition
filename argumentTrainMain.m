@@ -8,7 +8,9 @@ img = readData(root);
 stdImg = imgProess(img);
 
 %特征提取
-imgFeature = featureLattice(stdImg);
+imgFeature1 = getFeature1(stdImg); %特征一 是统计3*3小格中 1的个数  
+imgFeature2 = getFeature2(stdImg); %特征二 6,8,10,12  行列中 1的个数
+imgFeature3 = getFeature3(stdImg); %特征三 综合一二
 
 
 
