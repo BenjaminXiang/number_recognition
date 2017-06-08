@@ -3,17 +3,30 @@ function [ feature ] = getFeature1( stdImg )
 %   Detailed explanation goes here
 
 num = length(stdImg);
-feature = zeros(9, 5000);
+feature = zeros(16, 5000);
 for i=1:num
     imgTemp = stdImg{i};
-    f = zeros(9,1);
-    for ii = 0:2
-        for jj = 0:2
-            tmp = sum(imgTemp( ii*3+1:ii*3+3, jj*3+1:jj*3+3));
-            f(ii*3+jj+1,1) = sum(tmp); 
+    %充填至 60*60 以增加 不同类间特征的差异程度
+    bw60 = imresize(imgTemp, [60, 60]);
+    
+%     for ii=1:60
+%         for jj=1:60
+%             if bw60(ii, jj) == 1
+%                 bw60(ii, jj) = 0;
+%             else
+%                 bw60(ii, jj) = 1;
+%             end
+%         end
+%     end
+  
+    f = zeros(16,1);
+    for iRow = 0:3
+        for jCol = 0:3
+            tmp = sum(bw60( iRow*15+1:iRow*15+15, jCol*15+1:jCol*15+15));
+            f(iRow*4+jCol+1, 1) = sum(tmp); 
         end
     end
-    f = (10-f)/10;
+    f = (225-f)/225;
     feature(:, i) = f;
 end
 

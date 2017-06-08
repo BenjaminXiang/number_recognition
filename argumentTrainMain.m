@@ -7,6 +7,8 @@ img = readData(root);
 %图像预处理 处理的结果保存在stdImg中
 stdImg = imgProess(img);
 
+%stdImg = load('stdImg.mat');
+
 %特征提取
 imgFeature1 = getFeature1(stdImg); %特征一 是统计3*3小格中 1的个数  
 imgFeature2 = getFeature2(stdImg); %特征二 6,8,10,12  行列中 1的个数
