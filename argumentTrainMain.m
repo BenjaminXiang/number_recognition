@@ -14,6 +14,10 @@ imgFeature1 = getFeature1(stdImg); %特征一 是统计3*3小格中 1的个数
 imgFeature2 = getFeature2(stdImg); %特征二 6,8,10,12  行列中 1的个数
 imgFeature3 = getFeature3(stdImg); %特征三 综合一二
 
+%构造测试集 
+[inputTrain1, outputTrain1, inputTest1, outputTest1] = getTrainData(imgFeature1);
+[inputTrain2, outputTrain2, inputTest2, outputTest2] = getTrainData(imgFeature2);
+[inputTrain3, outputTrain3, inputTest3, outputTest3] = getTrainData(imgFeature3);
 
 
 

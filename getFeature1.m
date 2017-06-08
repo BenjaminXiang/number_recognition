@@ -9,16 +9,6 @@ for i=1:num
     %充填至 60*60 以增加 不同类间特征的差异程度
     bw60 = imresize(imgTemp, [60, 60]);
     
-%     for ii=1:60
-%         for jj=1:60
-%             if bw60(ii, jj) == 1
-%                 bw60(ii, jj) = 0;
-%             else
-%                 bw60(ii, jj) = 1;
-%             end
-%         end
-%     end
-  
     f = zeros(16,1);
     for iRow = 0:3
         for jCol = 0:3

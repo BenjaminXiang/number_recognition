@@ -3,17 +3,21 @@ function [ feature ] = getFeature2( stdImg )
 %   Detailed explanation goes here
 
 num = length(stdImg);
-feature = zeros(14,5000);
+feature = zeros(12,5000);
+
 for i = 1:num
     imgTemp = stdImg{i};
-    f = zeros(14, 1);
-    for j = 1:6
-        f(j,1) = length(find(imgTemp(:, 3+j*2)));
-        f(j+6,1) = length(find(imgTemp(3+j*2, :)));
+    
+     %充填至 60*60 以增加 不同类间特征的差异程度
+    bw60 = imresize(imgTemp, [60, 60]);
+    f = zeros(12, 1);
+    for j = 1:5
+        f(j, 1) = sum(bw60(j*10,:));
+        f(j+5, 1) = sum(bw60(:, j*10));
     end
-    f(13,1) = sum(diag(imgTemp)); %主对角线
-    f(14,1) = sum(diag(flipud(imgTemp))); %副对角线
-    f = (20-f)/20;
+    f(11,1) = sum(diag(bw60)); %主对角线
+    f(12,1) = sum(diag(flipud(bw60))); %副对角线
+    f = (60-f)/60;
     feature(:, i) = f;
 end
 
