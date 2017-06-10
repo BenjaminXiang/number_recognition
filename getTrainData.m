@@ -15,7 +15,7 @@ k = rand(1, 5000);
 inputTrain = imgFeature(:, n(1:4500));
 outputTrain = output(:, n(1:4500));
 inputTest = imgFeature(:, n(4501:5000));
-outputTest = imgFeature(:, n(4501:500));
+outputTest = output(:, n(4501:5000));
 
 end
 

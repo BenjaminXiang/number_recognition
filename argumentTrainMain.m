@@ -19,5 +19,15 @@ imgFeature3 = getFeature3(stdImg); %ÌØÕ÷Èı ×ÛºÏÒ»¶ş
 [inputTrain2, outputTrain2, inputTest2, outputTest2] = getTrainData(imgFeature2);
 [inputTrain3, outputTrain3, inputTest3, outputTest3] = getTrainData(imgFeature3);
 
+%ÑµÁ·ÍøÂç
+inNum = 28;
+midNum = 35;
+outNum = 10;
+[w1, b1, w2, b2] = networkTrain(inNum, midNum, outNum, inputTrain3, outputTrain3);
 
-
+%ÍøÂç²âÊÔ
+% for i = 1:500
+%     for j = 1:1:midNum
+%         
+%     end     
+% end
