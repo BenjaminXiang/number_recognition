@@ -1,6 +1,12 @@
-function [ w1, b1, w2, b2 ] = networkTrain( inNum, midNum, outNum ,inputData, outputData)
+function [ w1, b1, w2, b2 ] = networkTrain( midNum, inputData, outputData)
 %UNTITLED6 Summary of this function goes here
 %   Detailed explanation goes here
+
+%
+[rowIn, colIn] = size(inputData);
+[rowOut, colOut] = size(outputData);
+inNum = rowIn;
+outNum = rowOut;
 
 %权值初始化
 w1=rands(inNum, midNum); % 输入层到隐含层
@@ -29,27 +35,27 @@ for ii=1:10
     E(ii)=0;
     for i=1:1:n
        %% 网络预测输出 
-        x=inputData(:,i);
+        x=inputData(:,i); % 28*1
         % 隐含层输出
         for j=1:1:midNum
-            I(j)=inputData(:,j)'*w1(:, j)+b1(j);
+            I(j)=inputData(:,i)'*w1(:, j)+b1(j); 
             Iout(j)=1/(1+exp(-I(j)));
         end
         % 输出层输出
-        yn=w2'*Iout'+b2;
+        yn=w2'*Iout'+b2; % 10*1 (35*10)'*(1*35)'+(10*1) 
         
        %% 权值阀值修正
         %计算误差
-        e=outputData(:,i)-yn;     
+        e=outputData(:,i)-yn;  %10*1
         E(ii)=E(ii)+sum(abs(e));
         
         %计算权值变化率
-        dw2=e*Iout;
-        db2=e';
+        dw2=e*Iout; % 10*35
+        db2=e'; % 1*10
         
         for j=1:1:midNum
-            S=1/(1+exp(-I(j)));
-            FI(j)=S*(1-S);
+            S=1/(1+exp(-I(j))); % 1*35
+            FI(j)=S*(1-S); % 1*35
         end      
         for k=1:1:inNum
             for j=1:1:midNum

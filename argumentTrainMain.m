@@ -23,11 +23,7 @@ imgFeature3 = getFeature3(stdImg); %特征三 综合一二
 inNum = 28;
 midNum = 35;
 outNum = 10;
-[w1, b1, w2, b2] = networkTrain(inNum, midNum, outNum, inputTrain3, outputTrain3);
+[w1, b1, w2, b2] = networkTrain(midNum, inputTrain3, outputTrain3);
 
 %网络测试
-% for i = 1:500
-%     for j = 1:1:midNum
-%         
-%     end     
-% end
+outputVector = networkTest(midNum, inputTest3, outputTest3, w1, b1, w2, b2);
