@@ -1,19 +1,21 @@
 % 测试 网络
 clc;
-clear all;
+
 tic;
 t1 = clock;
 
 midNum = 35;
 
-% root = './trainedData';
+%root = './trainedData';
 % inputTrainData = importdata(strcat(root, '/', 'inputTrain.mat'));
 % outputTrainData = importdata(strcat(root, '/', 'outputTrain.mat'));
 
 inputTrain = importdata('inputTrain.mat');
 outputTrain = importdata('outputTrain.mat');
 
-[w1, b1, w2, b2] = networkTrainPro(midNum, inputTrain, outputTrain);
+t2 = clock;
+[w1, b1, w2, b2] = networkTrain(midNum, inputTrain, outputTrain);
+disp(['网络训练时间：',num2str(etime(clock,t2))]);
 
 % inputTestData = importdata(strcat(root, '/', 'inputTest.mat'));
 % outputTestData = importdata(strcat(root, '/', 'outputTest.mat'));
@@ -38,13 +40,15 @@ errNum = zeros(1, 10);
 for i = 1:500
     if err(i) ~= 0
         k = k+1;
-        errNum(stdLabel(1,i)) = errNum(stdLabel(1,i))+1;
+        numK(k) = int32(stdLabel(1, i));
+        errNum(1, numK(k)+1) = errNum(1, numK(k)+1)+1;
     end
 end
 
 disp(['程序总运行时间：',num2str(etime(clock,t1))]);
 
-errRate = (500-k)/k;
+k
+errRate = (500-k)/500;
 
 err
 errRate

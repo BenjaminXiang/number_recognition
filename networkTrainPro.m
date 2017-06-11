@@ -26,11 +26,13 @@ b2_2=b2_1;
 
 %Ñ§Ï°ÂÊ
 xite=0.1
-alfa=0.01;
+alfa=0.02;
 
 [m, n] = size(inputData);
 
 %% ÍøÂçÑµÁ·
+tic;
+t1 = clock;
 while true
     E(1)=0;
     for i=1:1:n
@@ -64,10 +66,10 @@ while true
             end
         end
            
-        w1=w1_1+xite*dw1;
-        b1=b1_1+xite*db1';
-        w2=w2_1+xite*dw2';
-        b2=b2_1+xite*db2';
+        w1=w1_1+xite*dw1;  % 10*35
+        b1=b1_1+xite*db1'; % 35*1
+        w2=w2_1+xite*dw2'; % 35*10
+        b2=b2_1+xite*db2'; % 10*1
         
         w1_2=w1_1;
         w1_1=w1;
@@ -80,11 +82,14 @@ while true
         b2_1=b2;
         
     end
+%     if max(abs(e)) <= alfa
+%         break;
+%     end
     if max(max(abs(xite*dw1)))<=alfa && max(abs(xite*db1'))<=alfa && max(max(abs(xite*dw2')))<=alfa && max(abs(xite*db2'))<=alfa
-        break;`
+        break;
     end
 end
-
+disp(['ÍøÂçÑµÁ·Ê±¼ä£º',num2str(etime(clock,t1))]);
 
 end
 

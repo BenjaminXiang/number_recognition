@@ -31,7 +31,7 @@ alfa=0.01;
 [m, n] = size(inputData);
 
 %% ÍøÂçÑµÁ·
-for ii=1:10
+for ii=1:30
     E(ii)=0;
     for i=1:1:n
        %% ÍøÂçÔ¤²âÊä³ö 

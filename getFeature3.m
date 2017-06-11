@@ -3,11 +3,11 @@ function [ feature ] = getFeature3( stdImg )
 %   Detailed explanation goes here
 
 num = length(stdImg);
-feature = zeros(28, 5000);
+feature = zeros(22, 5000);
 for i = 1:num
     imgTemp = stdImg{i};
     bw60 = imresize(imgTemp, [60, 60]);
-    f = zeros(28, 1);
+    f = zeros(22, 1);
     
     for iRow = 0:3
         for jCol = 0:3
@@ -17,14 +17,14 @@ for i = 1:num
     end
     f = (225-f(1:16, 1))/225;
     
-    for j = 1:5
-        f(j+16, 1) = sum(bw60(j*10,:));
-        f(j+21, 1) = sum(bw60(:, j*10));
+    for j = 2:4
+        f(j+16-1, 1) = sum(sum(bw60(j*10:j*10+1,:)));
+        f(j+18, 1) = sum(sum(bw60(:, j*10:j*10+1)));
     end
-    f(27,1) = sum(diag(bw60)); %主对角线
-    f(28,1) = sum(diag(flipud(bw60))); %副对角线
-    for j=17:28
-        f(j , 1) = (60-f(j, 1))/60;
+%     f(27,1) = sum(diag(bw60)); %主对角线
+%     f(28,1) = sum(diag(flipud(bw60))); %副对角线
+    for j=17:22
+        f(j , 1) = (120-f(j, 1))/120;
     end
     feature(:, i) = f;
 end
