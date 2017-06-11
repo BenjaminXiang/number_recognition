@@ -13,5 +13,6 @@ for i = 1:n
     yn(:, i) = w2'*Iout' + b2;
 end
 
+
 end
 
