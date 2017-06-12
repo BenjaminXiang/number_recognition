@@ -10,10 +10,10 @@ stdLabel = importdata('outputLabel.mat');
 
 for midNum = 10:100
     [w1, b1, w2, b2] = networkTrain(midNum, inputTrain, outputTrain);
-    w1List{midNum-14} = w1;
-    b1List{midNum-14} = b1;
-    w2List{midNum-14} = w2;
-    b2List{midNum-14} = b2;
+    w1List{midNum-9} = w1;
+    b1List{midNum-9} = b1;
+    w2List{midNum-9} = w2;
+    b2List{midNum-9} = b2;
     
     outputVector = networkTest(midNum, inputTestData, w1, b1, w2, b2);
 
@@ -33,8 +33,8 @@ for midNum = 10:100
             errNum(1, numK(k)+1) = errNum(1, numK(k)+1)+1;
         end
     end
-    errNumList{midNum-14} = errNum;
-    rightRate{midNum-14} = (500-k)/500;
+    errNumList{midNum-9} = errNum;
+    rightRate{midNum-9} = (500-k)/500;
 end
 save errNumList errNumList;
 save rightRate rightRate;
