@@ -25,7 +25,7 @@ b2_1=b2;
 b2_2=b2_1;
 
 %Ñ§Ï°ÂÊ
-xite=0.1
+xite=0.1;
 alfa=0.01;
 
 [m, n] = size(inputData);
